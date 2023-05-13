@@ -4,39 +4,82 @@ let number2 = 0;
 
 const display = document.querySelector("#display");
 let displayValue = `${number1.toString()} ${operator} ${number2.toString()}`;
-// display.textContent = displayValue;
 
-//function isANumber() {}
-//function isAnOperator() {}
-
-/*
-function buttonResponse(buttonID)
+function isANumber(buttonID)
 {
-    const button = document.querySelector(buttonID);
-    const buttonValue = button.textContent;
-
-    if (buttonValue.isANumber())
+    switch (buttonID)
     {
-        if (operator === "")
-            number1 = parseInt(buttonValue);
-        else
-            number2 = parseInt(buttonValue);
-    }
-    else    //buttonID = Operator || Action
-    {
-        if (buttonValue.isAnOperator())
-            operator = buttonValue;
-        else
-            console.log("The button pressed is an action");
+        case "buttonZero":
+        case "buttonOne":
+        case "buttonTwo":
+        case "buttonThree":
+        case "buttonFour":
+        case "buttonFive":
+        case "buttonSix":
+        case "buttonSeven":
+        case "buttonEight":
+        case "buttonNine":
+            return true;
+    
+        default:
+            return false;
     }
 }
-*/
+
+function isAnOperator(buttonID)
+{
+    switch (buttonID)
+    {
+        case "percentageButton":
+        case "divideButton":
+        case "multiplyButton":
+        case "minusButton":
+        case "plusButton":
+            return true;
+    
+        default:
+            return false;
+    }
+}
+
+function isAnAction(buttonID)
+{
+    switch (buttonID)
+    {
+        case "clearButton":
+        case "plusMinusButton":
+        case "decimalButton":
+        case "equalsButton":
+            return true;
+    
+        default:
+            return false;
+    }
+}
+
+function buttonResponse(buttonID)
+{
+    if (isANumber(buttonID))
+    {
+        if (operator === "")
+            console.log("The button pressed is a number");
+            // add buttonID.substring(6) to number1
+        else
+            console.log("The button pressed is a number2");
+            // add buttonID.substring(6) to number2
+    }
+    else if (isAnOperator(buttonID))
+        console.log("The button pressed is an operator");
+    else if (isAnAction(buttonID))
+        console.log("The button pressed is an action");
+    else
+        console.log("ERROR: somehow this button is not registered!");
+}
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach( button =>
 {
-    button.addEventListener("click", console.log(button.id));
-    // button.addEventListener("click", buttonResponse(button.id));
+    button.addEventListener("click", (e) => buttonResponse(e.target.id));
 });
 
 //function add() {}
