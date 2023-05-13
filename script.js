@@ -159,8 +159,15 @@ function buttonResponse(buttonID)
                 alert("ERROR: Multiple consecutive operators cannot be added.");
             else
             {
+                const decimalCheck = displayValue[displayValue.length - 1];
+                if (decimalCheck[decimalCheck.length - 1] === ".")
+                {
+                    displayValue[displayValue.length - 1] += "0";
+                }
+
                 operators.push(convertToOperator(buttonID));
                 displayValue.push(operators[operators.length - 1]);
+                decimal.disabled = false;
                 display.textContent = `${displayValue.join(" ")}`;
             }
         }
@@ -186,7 +193,32 @@ function buttonResponse(buttonID)
 
             case "decimalButton":
             {
-                alert("Decimal button pressed!");
+                if (operators.length === 0)
+                {
+                    if (numbers.length === 0)
+                        numbers.push("0.");
+                    else
+                        numbers[numbers.length - 1] += ".";
+        
+                    displayValue[numbers.length - 1] = numbers[numbers.length - 1];
+                }
+                else
+                {
+                    if (numbers.length === operators.length)
+                    {
+                        numbers.push("0.");
+                        displayValue.push(numbers[numbers.length - 1]);
+                    }
+                    else
+                    {
+                        numbers[numbers.length - 1] += ".";
+                        displayValue[displayValue.length - 1] = numbers[numbers.length - 1];
+                    }
+                }
+                
+                decimal.disabled = true;
+                display.textContent = `${displayValue.join(" ")}`;
+                
                 break;
             }
 
