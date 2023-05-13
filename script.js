@@ -1,9 +1,7 @@
-let number1 = "";
-let operator = "";
-let number2 = "";
-
 const display = document.querySelector("#display");
-// let displayValue = `${number1.toString()} ${operator} ${number2.toString()}`;
+let numbers = [];
+let operators = [];
+let displayValue = [];
 
 function isANumber(buttonID)
 {
@@ -65,8 +63,12 @@ function isAnOperator(buttonID)
         case "multiplyButton":
         case "minusButton":
         case "plusButton":
+        case `%`:
+        case `/`:
+        case `*`:
+        case `-`:
+        case `+`:
             return true;
-    
         default:
             return false;
     }
@@ -112,33 +114,54 @@ function buttonResponse(buttonID)
 {
     if (isANumber(buttonID)) // || buttonID === "decimalButton"
     {
-        if (operator === "")
+        if (operators.length === 0)
         {
-            number1 += convertToNumber(buttonID);
-            console.log(number1);
+            if (numbers.length === 0)
+                numbers.push(convertToNumber(buttonID));
+            else
+                numbers[numbers.length - 1] += convertToNumber(buttonID);
 
-            display.textContent = `${number1}`;
+            displayValue[numbers.length - 1] = numbers[numbers.length - 1];
         }
         else
         {
-            number2 += convertToNumber(buttonID);
-            console.log(number2);
-
-            display.textContent = `${number1} ${operator} ${number2}`;
+            if (numbers.length === operators.length)
+            {
+                numbers.push(convertToNumber(buttonID));
+                displayValue.push(numbers[numbers.length - 1]);
+            }
+            else
+            {
+                numbers[numbers.length - 1] += convertToNumber(buttonID);
+                displayValue[displayValue.length - 1] = numbers[numbers.length - 1];
+            }
         }
+
+        display.textContent = `${displayValue.join(" ")}`;
     }
     else if (isAnOperator(buttonID))
     {
-        operator = convertToOperator(buttonID);
-
-        display.textContent = `${number1} ${operator}`;
+        if ( !(numbers.length > 0) )
+            alert("ERROR: An operator must not come before any number is entered!");
+        else 
+        {
+            //Maybe I should create another function for this specific test...
+            if ( isAnOperator(displayValue[displayValue.length - 1]) )
+                alert("ERROR: Multiple consecutive operators cannot be added.");
+            else
+            {
+                operators.push(convertToOperator(buttonID));
+                displayValue.push(operators[operators.length - 1]);
+                display.textContent = `${displayValue.join(" ")}`;
+            }
+        }
     }
     else if (isAnAction(buttonID))
     {
         console.log("The button pressed is an action");
     }
     else
-        console.log("ERROR: somehow this button is not registered!");
+        alert("ERROR: Somehow this button is not registered!");
 }
 
 const buttons = document.querySelectorAll("button");
