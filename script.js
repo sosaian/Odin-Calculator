@@ -1,4 +1,5 @@
 const display = document.querySelector("#display");
+const decimal = document.querySelector("#decimalButton");
 let numbers = [];
 let operators = [];
 let displayValue = [];
@@ -110,6 +111,14 @@ function isAnAction(buttonID)
     }
 }
 
+function resetCalculator()
+{
+    numbers = [];
+    operators = [];
+    displayValue = [];
+    display.textContent = 0;
+}
+
 function buttonResponse(buttonID)
 {
     if (isANumber(buttonID)) // || buttonID === "decimalButton"
@@ -158,7 +167,38 @@ function buttonResponse(buttonID)
     }
     else if (isAnAction(buttonID))
     {
-        console.log("The button pressed is an action");
+        // console.log("The button pressed is an action");
+
+        switch (buttonID)
+        {
+            case "clearButton":
+            {
+                // alert("Clear button pressed!");
+                resetCalculator();
+                break;   
+            }
+
+            case "plusMinusButton":
+            {                
+                alert("+/- button pressed!");
+                break;
+            }
+
+            case "decimalButton":
+            {
+                alert("Decimal button pressed!");
+                break;
+            }
+
+            case "equalsButton":
+            {
+                alert("Equals button pressed!");
+                break;
+            }
+
+            default:
+                alert("ERROR: Invalid action!");
+        }
     }
     else
         alert("ERROR: Somehow this button is not registered!");
