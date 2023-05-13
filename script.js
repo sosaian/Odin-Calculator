@@ -1,9 +1,9 @@
-let number1 = 0;
+let number1 = "";
 let operator = "";
-let number2 = 0;
+let number2 = "";
 
 const display = document.querySelector("#display");
-let displayValue = `${number1.toString()} ${operator} ${number2.toString()}`;
+// let displayValue = `${number1.toString()} ${operator} ${number2.toString()}`;
 
 function isANumber(buttonID)
 {
@@ -26,6 +26,36 @@ function isANumber(buttonID)
     }
 }
 
+function convertToNumber(word)
+{
+    const str = word.substring(6);
+    switch (str.toLowerCase())
+    {
+      case "zero":
+        return "0";
+      case "one":
+        return "1";
+      case "two":
+        return "2";
+      case "three":
+        return "3";
+      case "four":
+        return "4";
+      case "five":
+        return "5";
+      case "six":
+        return "6";
+      case "seven":
+        return "7";
+      case "eight":
+        return "8";
+      case "nine":
+        return "9";
+      default:
+        return NaN;
+    }
+}
+
 function isAnOperator(buttonID)
 {
     switch (buttonID)
@@ -39,6 +69,27 @@ function isAnOperator(buttonID)
     
         default:
             return false;
+    }
+}
+
+function convertToOperator(word)
+{
+    const str = word.substring(0, word.length - 6);
+    
+    switch (str)
+    {
+      case "percentage":
+        return "%";
+      case "divide":
+        return "/";
+      case "multiply":
+        return "*";
+      case "minus":
+        return "-";
+      case "plus":
+        return "+";
+      default:
+        return NaN;
     }
 }
 
@@ -59,19 +110,33 @@ function isAnAction(buttonID)
 
 function buttonResponse(buttonID)
 {
-    if (isANumber(buttonID))
+    if (isANumber(buttonID)) // || buttonID === "decimalButton"
     {
         if (operator === "")
-            console.log("The button pressed is a number");
-            // add buttonID.substring(6) to number1
+        {
+            number1 += convertToNumber(buttonID);
+            console.log(number1);
+
+            display.textContent = `${number1}`;
+        }
         else
-            console.log("The button pressed is a number2");
-            // add buttonID.substring(6) to number2
+        {
+            number2 += convertToNumber(buttonID);
+            console.log(number2);
+
+            display.textContent = `${number1} ${operator} ${number2}`;
+        }
     }
     else if (isAnOperator(buttonID))
-        console.log("The button pressed is an operator");
+    {
+        operator = convertToOperator(buttonID);
+
+        display.textContent = `${number1} ${operator}`;
+    }
     else if (isAnAction(buttonID))
+    {
         console.log("The button pressed is an action");
+    }
     else
         console.log("ERROR: somehow this button is not registered!");
 }
