@@ -168,6 +168,7 @@ function resetCalculator()
     numbers = [];
     operators = [];
     displayValue = [];
+    decimal.disabled = false;
     display.textContent = 0;
 }
 
@@ -200,6 +201,50 @@ function decimalButtonResponse()
     display.textContent = `${displayValue.join(" ")}`;
 }
 
+function calcAdd(number1, number2)
+{
+    const sum1 = parseInt(number1);
+    const sum2 = parseInt(number2);
+    
+    return sum1 + sum2;
+}
+
+function calcSubstract(number1, number2)
+{
+    const sum1 = parseInt(number1);
+    const sum2 = parseInt(number2);
+    
+    return sum1 - sum2;
+}
+
+function calcMultiply(number1, number2)
+{
+    const sum1 = parseInt(number1);
+    const sum2 = parseInt(number2);
+    
+    return sum1 * sum2;
+}
+
+function calcDivide(number1, number2)
+{
+    const sum1 = parseInt(number1);
+    const sum2 = parseInt(number2);
+
+    if (sum2 === 0)
+    {
+        alert("ERROR: You can't divide by zero! Congratulations, you broke math.\n\nI'll just ignore this division :)");
+        
+        return sum1;
+    }
+    else
+        return sum1 / sum2;
+}
+
+function calcOperate(input)
+{
+    //input = displayValue
+}
+
 function buttonResponse(buttonID)
 {
     if (isANumber(buttonID))
@@ -230,7 +275,23 @@ function buttonResponse(buttonID)
 
             case "equalsButton":
             {
-                alert("Equals button pressed!");
+                if ( isAnOperator(displayValue[displayValue.length - 1]) )
+                    alert("ERROR: Please add a number before calculating the result.");
+                else
+                {
+                    const decimalCheck = displayValue[displayValue.length - 1];
+            
+                    if (decimalCheck[decimalCheck.length - 1] === ".")
+                    {
+                        alert("WARNING: Decimal point at the end detected.\nI'll asume it's .0");
+                        displayValue[displayValue.length - 1] += "0";
+                        display.textContent = `${displayValue.join(" ")}`;
+                        decimal.disabled = false;
+                    }
+                    
+                    alert("Equals button pressed!");
+                }
+
                 break;
             }
 
@@ -247,9 +308,3 @@ buttons.forEach( button =>
 {
     button.addEventListener("click", (e) => buttonResponse(e.target.id));
 });
-
-//function add() {}
-//function substract() {}
-//function multiply() {}
-//function divide() {}
-//function operate(operator, number1, number2) {}
