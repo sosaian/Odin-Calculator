@@ -1,8 +1,9 @@
 const display = document.querySelector("#display");
 const decimal = document.querySelector("#decimalButton");
-let numbers = [];
+let numbers = ["0"];
 let operators = [];
-let displayValue = [];
+let displayValue = [numbers[0]];
+display.textContent = displayValue.join(" ");
 
 function isANumber(buttonID)
 {
@@ -59,8 +60,8 @@ function numberButtonResponse(buttonID)
 {
     if (operators.length === 0)
     {
-        if (numbers.length === 0)
-            numbers.push(convertToNumber(buttonID));
+        if (numbers[numbers.length - 1] === "0")
+            numbers[numbers.length - 1] = convertToNumber(buttonID);
         else
             numbers[numbers.length - 1] += convertToNumber(buttonID);
 
@@ -75,7 +76,11 @@ function numberButtonResponse(buttonID)
         }
         else
         {
-            numbers[numbers.length - 1] += convertToNumber(buttonID);
+            if (numbers[numbers.length - 1] === "0")
+                numbers[numbers.length - 1] = convertToNumber(buttonID);
+            else
+                numbers[numbers.length - 1] += convertToNumber(buttonID);
+
             displayValue[displayValue.length - 1] = numbers[numbers.length - 1];
         }
     }
@@ -165,11 +170,12 @@ function isAnAction(buttonID)
 
 function resetCalculator()
 {
-    numbers = [];
-    operators = [];
-    displayValue = [];
     decimal.disabled = false;
-    display.textContent = 0;
+
+    numbers = ["0"];
+    operators = [];
+    displayValue = [numbers[0]];
+    display.textContent = displayValue.join(" ");
 }
 
 function decimalButtonResponse()
