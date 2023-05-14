@@ -270,6 +270,7 @@ function buttonResponse(buttonID)
             case "plusMinusButton":
             {                
                 alert("+/- button pressed!");
+                //Maybe change this to a backspace action button.
                 break;
             }
 
@@ -289,13 +290,13 @@ function buttonResponse(buttonID)
             
                     if (decimalCheck[decimalCheck.length - 1] === ".")
                     {
-                        alert("WARNING: Decimal point at the end detected.\nI'll asume it's .0");
-                        displayValue[displayValue.length - 1] += "0";
-                        display.textContent = `${displayValue.join(" ")}`;
-                        decimal.disabled = false;
+                        alert("ERROR: Please add a number before calculating the result.");
                     }
-                    
-                    alert("Equals button pressed!");
+                    else
+                    {
+                        decimal.disabled = false;
+                        alert("Equals button pressed!");
+                    }
                 }
 
                 break;
