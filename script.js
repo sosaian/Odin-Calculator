@@ -209,26 +209,26 @@ function decimalButtonResponse()
 
 function calcAdd(number1, number2)
 {
-    const sum1 = parseInt(number1);
-    const sum2 = parseInt(number2);
+    const addend1 = parseInt(number1);
+    const addend2 = parseInt(number2);
     
-    return sum1 + sum2;
+    return addend1 + addend2;
 }
 
 function calcSubstract(number1, number2)
 {
-    const sum1 = parseInt(number1);
-    const sum2 = parseInt(number2);
+    const minuend = parseInt(number1);
+    const subtrahend = parseInt(number2);
     
-    return sum1 - sum2;
+    return minuend - subtrahend;
 }
 
 function calcMultiply(number1, number2)
 {
-    const sum1 = parseInt(number1);
-    const sum2 = parseInt(number2);
+    const factor1 = parseInt(number1);
+    const factor2 = parseInt(number2);
     
-    return sum1 * sum2;
+    return factor1 * factor2;
 }
 
 function calcDivide(number1, number2)
