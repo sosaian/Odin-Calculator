@@ -233,31 +233,41 @@ function calcMultiply(number1, number2)
 
 function calcDivide(number1, number2)
 {
-    const sum1 = parseInt(number1);
-    const sum2 = parseInt(number2);
+    const dividend = parseInt(number1);
+    const divisor = parseInt(number2);
 
-    if (sum2 === 0)
+    if (divisor === 0)
     {
         alert("ERROR: You can't divide by zero! Congratulations, you broke math.\n\nI'll just ignore this division :)");
         
-        return sum1;
+        return dividend;
     }
     else
-        return sum1 / sum2;
+        return dividend / divisor;
+}
+
+function calcModulo(number1, number2)
+{
+    const dividend = parseInt(number1);
+    const divisor = parseInt(number2);
+
+    if (divisor === 0)
+    {
+        alert("ERROR: You can't divide by zero! Congratulations, you broke math.\n\nI'll just ignore this division :)");
+        return dividend;
+    }
+    else
+        return (dividend % divisor);
 }
 
 function calcOperate(input)
-{
-    console.table(displayValue);
-    
+{ 
     let number1 = "";
     let operator = "";
     let number2 = "";
 
     for (let index = 1; index < input.length; index += 2)
     {
-        console.log("index:", index);
-
         if(index === 1)
             number1 = input[index - 1];
 
@@ -266,8 +276,9 @@ function calcOperate(input)
 
         switch (operator)
         {
-            // case `%`:
-            //     response = calcModulo(number1, number2);
+            case `%`:
+                number1 = calcModulo(number1, number2);
+                break;
             case `/`:
                 number1 = calcDivide(number1, number2);
                 break;
@@ -285,7 +296,6 @@ function calcOperate(input)
         }
     }
 
-    console.log("Answer:", number1);
     return number1;
 }
 
