@@ -248,7 +248,45 @@ function calcDivide(number1, number2)
 
 function calcOperate(input)
 {
-    //input = displayValue
+    console.table(displayValue);
+    
+    let number1 = "";
+    let operator = "";
+    let number2 = "";
+
+    for (let index = 1; index < input.length; index += 2)
+    {
+        console.log("index:", index);
+
+        if(index === 1)
+            number1 = input[index - 1];
+
+        operator = input[index];
+        number2 = input[index + 1];
+
+        switch (operator)
+        {
+            // case `%`:
+            //     response = calcModulo(number1, number2);
+            case `/`:
+                number1 = calcDivide(number1, number2);
+                break;
+            case `*`:
+                number1 = calcMultiply(number1, number2);
+                break;
+            case `-`:
+                number1 = calcSubstract(number1, number2);
+                break;
+            case `+`:
+                number1 = calcAdd(number1, number2);
+                break;
+            default:
+                alert(`ERROR: ${displayValue[index]} is not an operator!`);
+        }
+    }
+
+    console.log("Answer:", number1);
+    return number1;
 }
 
 function buttonResponse(buttonID)
@@ -295,7 +333,7 @@ function buttonResponse(buttonID)
                     else
                     {
                         decimal.disabled = false;
-                        alert("Equals button pressed!");
+                        display.textContent = calcOperate(displayValue);
                     }
                 }
 
