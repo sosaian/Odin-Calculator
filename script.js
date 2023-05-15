@@ -3,6 +3,7 @@ const decimal = document.querySelector("#decimalButton");
 let numbers = ["0"];
 let operators = [];
 let displayValue = [numbers[0]];
+let result = "";
 display.textContent = displayValue.join(" ");
 
 function isANumber(buttonID)
@@ -343,7 +344,14 @@ function buttonResponse(buttonID)
                     else
                     {
                         decimal.disabled = false;
-                        display.textContent = calcOperate(displayValue);
+                        result = calcOperate(displayValue).toString(); 
+                        display.textContent = parseInt(result);
+
+                        //If next button pressed is a number => resetCalculator() + use that number to already start a new operation.
+
+                        //If next button pressed is an operator => resetCalculator() + use result as previous number to continue the operation.
+
+                        //If next button pressed is an action => Each case has its own response!
                     }
                 }
 
