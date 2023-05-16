@@ -59,8 +59,15 @@ function convertToNumber(word)
 
 function numberButtonResponse(buttonID)
 {
-    if (operators.length === 0)
+    if (!(result === ""))
     {
+        resetCalculator();
+        numbers[0] = result;
+        result = "";
+        displayValue[0] = numbers[0];
+    }
+    else if (operators.length === 0)
+    {        
         if (numbers[numbers.length - 1] === "0")
             numbers[numbers.length - 1] = convertToNumber(buttonID);
         else
@@ -132,6 +139,13 @@ function convertToOperator(word)
 
 function operatorButtonResponse(buttonID)
 {
+    if (!(result === ""))
+    {
+        console.log("operation continues");
+        resetCalculator();
+        numberButtonResponse(result);
+    }
+    
     if ( !(numbers.length > 0) )
         alert("ERROR: An operator must not come before any number is entered!");
     else 
@@ -312,6 +326,7 @@ function buttonResponse(buttonID)
         {
             case "clearButton":
             {
+                result = "";
                 resetCalculator();
                 break;   
             }
