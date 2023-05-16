@@ -203,7 +203,7 @@ function decimalButtonResponse()
         resetCalculator();
         numbers[0] = "0.";
         displayValue[0] = numbers[0];
-        console.log("decimal after result");
+        // console.log("decimal after result");
     }
     else if (operators.length === 0)
     {
