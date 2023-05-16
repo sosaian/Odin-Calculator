@@ -66,7 +66,7 @@ body
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap: 0.5vh;
+	gap: 1vw;
 }
 
 .row
@@ -76,13 +76,13 @@ body
 	justify-content: space-evenly;
 	align-items: center;
 	flex-grow: 1;
-	gap: 0.5vh;
+	gap: 1vw;
 }
 
 button
 {
 	height: 100%;
-	width: 21.125vw;
+	width: 20.7vw;
 	margin: 0;
 	padding: 0;
 	font-size: 4vh;
@@ -92,5 +92,5 @@ button
 
 #buttonZero
 {
-	width: 42.75vw;
+	width: 42.4vw;
 }
