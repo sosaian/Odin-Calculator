@@ -61,9 +61,9 @@ function numberButtonResponse(buttonID)
 {
     if (!(result === ""))
     {
-        resetCalculator();
-        numbers[0] = result;
         result = "";
+        resetCalculator();
+        numbers[0] = convertToNumber(buttonID);
         displayValue[0] = numbers[0];
     }
     else if (operators.length === 0)
@@ -141,11 +141,13 @@ function operatorButtonResponse(buttonID)
 {
     if (!(result === ""))
     {
-        console.log("operation continues");
         resetCalculator();
-        numberButtonResponse(result);
+        numbers[0] = result;
+        result = "";
+        displayValue[0] = numbers[0];
+        display.textContent = `${displayValue.join(" ")}`;
     }
-    
+
     if ( !(numbers.length > 0) )
         alert("ERROR: An operator must not come before any number is entered!");
     else 
@@ -195,7 +197,15 @@ function resetCalculator()
 
 function decimalButtonResponse()
 {
-    if (operators.length === 0)
+    if (!(result === ""))
+    {
+        result = "";
+        resetCalculator();
+        numbers[0] = "0.";
+        displayValue[0] = numbers[0];
+        console.log("decimal after result");
+    }
+    else if (operators.length === 0)
     {
         if (numbers.length === 0)
             numbers.push("0.");
@@ -353,20 +363,16 @@ function buttonResponse(buttonID)
                     const decimalCheck = displayValue[displayValue.length - 1];
             
                     if (decimalCheck[decimalCheck.length - 1] === ".")
-                    {
                         alert("ERROR: Please add a number before calculating the result.");
-                    }
                     else
                     {
+                        if(operators.length === 0)
+                            result = displayValue[0];
+                        else
+                            result = calcOperate(displayValue).toString(); 
+
                         decimal.disabled = false;
-                        result = calcOperate(displayValue).toString(); 
                         display.textContent = parseInt(result);
-
-                        //If next button pressed is a number => resetCalculator() + use that number to already start a new operation.
-
-                        //If next button pressed is an operator => resetCalculator() + use result as previous number to continue the operation.
-
-                        //If next button pressed is an action => Each case has its own response!
                     }
                 }
 
