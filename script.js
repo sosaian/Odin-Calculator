@@ -175,7 +175,7 @@ function isAnAction(buttonID)
     switch (buttonID)
     {
         case "clearButton":
-        case "plusMinusButton":
+        case "backspaceButton":
         case "decimalButton":
         case "equalsButton":
             return true;
@@ -364,10 +364,9 @@ function buttonResponse(buttonID)
                 break;   
             }
 
-            case "plusMinusButton":
+            case "backspaceButton":
             {                
-                alert("+/- button pressed!");
-                //Maybe change this to a backspace action button.
+                alert("Backspace button pressed!");
                 break;
             }
 
