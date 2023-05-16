@@ -203,7 +203,6 @@ function decimalButtonResponse()
         resetCalculator();
         numbers[0] = "0.";
         displayValue[0] = numbers[0];
-        // console.log("decimal after result");
     }
     else if (operators.length === 0)
     {
@@ -234,8 +233,6 @@ function decimalButtonResponse()
 
 function calcAdd(number1, number2)
 {
-    // const addend1 = parseInt(number1);
-    // const addend2 = parseInt(number2);
     const addend1 = parseFloat(number1);
     const addend2 = parseFloat(number2);
     
@@ -244,8 +241,6 @@ function calcAdd(number1, number2)
 
 function calcSubstract(number1, number2)
 {
-    // const minuend = parseInt(number1);
-    // const subtrahend = parseInt(number2);
     const minuend = parseFloat(number1);
     const subtrahend = parseFloat(number2);
     
@@ -254,8 +249,6 @@ function calcSubstract(number1, number2)
 
 function calcMultiply(number1, number2)
 {
-    // const factor1 = parseInt(number1);
-    // const factor2 = parseInt(number2);
     const factor1 = parseFloat(number1);
     const factor2 = parseFloat(number2);
     
@@ -264,8 +257,6 @@ function calcMultiply(number1, number2)
 
 function calcDivide(number1, number2)
 {
-    // const dividend = parseInt(number1);
-    // const divisor = parseInt(number2);
     const dividend = parseFloat(number1);
     const divisor = parseFloat(number2);
 
@@ -281,8 +272,6 @@ function calcDivide(number1, number2)
 
 function calcModulo(number1, number2)
 {
-    // const dividend = parseInt(number1);
-    // const divisor = parseInt(number2);
     const dividend = parseFloat(number1);
     const divisor = parseFloat(number2);
 
@@ -352,7 +341,6 @@ function equalsButtonResponse()
                 result = calcOperate(displayValue).toString(); 
 
             decimal.disabled = false;
-            // display.textContent = parseInt(result);
             display.textContent = parseFloat(result);
         }
     }
