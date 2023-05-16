@@ -276,7 +276,7 @@ function calcDivide(number1, number2)
         return dividend;
     }
     else
-        return (dividend / divisor).toFixed(5);
+        return parseFloat((dividend / divisor).toFixed(5));
 }
 
 function calcModulo(number1, number2)
@@ -292,7 +292,7 @@ function calcModulo(number1, number2)
         return dividend;
     }
     else
-        return (dividend % divisor);
+        return parseFloat((dividend % divisor).toFixed(5));
 }
 
 function calcOperate(input)
