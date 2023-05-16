@@ -4,7 +4,7 @@ let numbers = ["0"];
 let operators = [];
 let displayValue = [numbers[0]];
 let result = "";
-display.textContent = displayValue.join(" ");
+display.textContent = displayValue.join("");
 
 function isANumber(buttonID)
 {
@@ -93,7 +93,7 @@ function numberButtonResponse(buttonID)
         }
     }
 
-    display.textContent = `${displayValue.join(" ")}`;
+    display.textContent = `${displayValue.join("")}`;
 }
 
 function isAnOperator(buttonID)
@@ -145,7 +145,7 @@ function operatorButtonResponse(buttonID)
         numbers[0] = result;
         result = "";
         displayValue[0] = numbers[0];
-        display.textContent = `${displayValue.join(" ")}`;
+        display.textContent = `${displayValue.join("")}`;
     }
 
     if ( !(numbers.length > 0) )
@@ -165,7 +165,7 @@ function operatorButtonResponse(buttonID)
             operators.push(convertToOperator(buttonID));
             displayValue.push(operators[operators.length - 1]);
             decimal.disabled = false;
-            display.textContent = `${displayValue.join(" ")}`;
+            display.textContent = `${displayValue.join("")}`;
         }
     }
 }
@@ -192,7 +192,7 @@ function resetCalculator()
     numbers = ["0"];
     operators = [];
     displayValue = [numbers[0]];
-    display.textContent = displayValue.join(" ");
+    display.textContent = displayValue.join("");
 }
 
 function decimalButtonResponse()
@@ -229,7 +229,7 @@ function decimalButtonResponse()
     }
     
     decimal.disabled = true;
-    display.textContent = `${displayValue.join(" ")}`;
+    display.textContent = `${displayValue.join("")}`;
 }
 
 function calcAdd(number1, number2)
