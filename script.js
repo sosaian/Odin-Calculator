@@ -324,6 +324,29 @@ function calcOperate(input)
     return number1;
 }
 
+function equalsButtonResponse()
+{
+    if ( isAnOperator(displayValue[displayValue.length - 1]) )
+        alert("ERROR: Please add a number before calculating the result.");
+    else
+    {
+        const decimalCheck = displayValue[displayValue.length - 1];
+
+        if (decimalCheck[decimalCheck.length - 1] === ".")
+            alert("ERROR: Please add a number before calculating the result.");
+        else
+        {
+            if(operators.length === 0)
+                result = displayValue[0];
+            else
+                result = calcOperate(displayValue).toString(); 
+
+            decimal.disabled = false;
+            display.textContent = parseInt(result);
+        }
+    }
+}
+
 function buttonResponse(buttonID)
 {
     if (isANumber(buttonID))
@@ -356,26 +379,7 @@ function buttonResponse(buttonID)
 
             case "equalsButton":
             {
-                if ( isAnOperator(displayValue[displayValue.length - 1]) )
-                    alert("ERROR: Please add a number before calculating the result.");
-                else
-                {
-                    const decimalCheck = displayValue[displayValue.length - 1];
-            
-                    if (decimalCheck[decimalCheck.length - 1] === ".")
-                        alert("ERROR: Please add a number before calculating the result.");
-                    else
-                    {
-                        if(operators.length === 0)
-                            result = displayValue[0];
-                        else
-                            result = calcOperate(displayValue).toString(); 
-
-                        decimal.disabled = false;
-                        display.textContent = parseInt(result);
-                    }
-                }
-
+                equalsButtonResponse();
                 break;
             }
 
