@@ -234,32 +234,40 @@ function decimalButtonResponse()
 
 function calcAdd(number1, number2)
 {
-    const addend1 = parseInt(number1);
-    const addend2 = parseInt(number2);
+    // const addend1 = parseInt(number1);
+    // const addend2 = parseInt(number2);
+    const addend1 = parseFloat(number1);
+    const addend2 = parseFloat(number2);
     
     return addend1 + addend2;
 }
 
 function calcSubstract(number1, number2)
 {
-    const minuend = parseInt(number1);
-    const subtrahend = parseInt(number2);
+    // const minuend = parseInt(number1);
+    // const subtrahend = parseInt(number2);
+    const minuend = parseFloat(number1);
+    const subtrahend = parseFloat(number2);
     
     return minuend - subtrahend;
 }
 
 function calcMultiply(number1, number2)
 {
-    const factor1 = parseInt(number1);
-    const factor2 = parseInt(number2);
+    // const factor1 = parseInt(number1);
+    // const factor2 = parseInt(number2);
+    const factor1 = parseFloat(number1);
+    const factor2 = parseFloat(number2);
     
     return factor1 * factor2;
 }
 
 function calcDivide(number1, number2)
 {
-    const dividend = parseInt(number1);
-    const divisor = parseInt(number2);
+    // const dividend = parseInt(number1);
+    // const divisor = parseInt(number2);
+    const dividend = parseFloat(number1);
+    const divisor = parseFloat(number2);
 
     if (divisor === 0)
     {
@@ -268,13 +276,15 @@ function calcDivide(number1, number2)
         return dividend;
     }
     else
-        return dividend / divisor;
+        return (dividend / divisor).toFixed(5);
 }
 
 function calcModulo(number1, number2)
 {
-    const dividend = parseInt(number1);
-    const divisor = parseInt(number2);
+    // const dividend = parseInt(number1);
+    // const divisor = parseInt(number2);
+    const dividend = parseFloat(number1);
+    const divisor = parseFloat(number2);
 
     if (divisor === 0)
     {
@@ -342,7 +352,8 @@ function equalsButtonResponse()
                 result = calcOperate(displayValue).toString(); 
 
             decimal.disabled = false;
-            display.textContent = parseInt(result);
+            // display.textContent = parseInt(result);
+            display.textContent = parseFloat(result);
         }
     }
 }
