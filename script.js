@@ -346,6 +346,30 @@ function equalsButtonResponse()
     }
 }
 
+function backspaceResponse()
+{
+    if (numbers.length === operators.length)
+    {
+        operators.pop();
+        displayValue.pop();
+    }
+    else
+    {
+        let aux = numbers[numbers.length - 1];
+        aux = aux.split("");
+        aux.pop();
+
+        if (aux.length === 0)
+            numbers[numbers.length - 1] = "0";
+        else
+            numbers[numbers.length - 1] = aux.join("");
+
+        displayValue[displayValue.length - 1] = numbers[numbers.length - 1];
+    }
+    
+    display.textContent = displayValue.join("");
+}
+
 function buttonResponse(buttonID)
 {
     if (isANumber(buttonID))
@@ -365,7 +389,8 @@ function buttonResponse(buttonID)
 
             case "backspaceButton":
             {                
-                alert("Backspace button pressed!");
+                // alert("Backspace button pressed!");
+                backspaceResponse();
                 break;
             }
 
