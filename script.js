@@ -348,26 +348,38 @@ function equalsButtonResponse()
 
 function backspaceResponse()
 {
-    if (numbers.length === operators.length)
+    if (display.textContent === result)
     {
-        operators.pop();
-        displayValue.pop();
+        //User pressed backspace after obtaining result from previous operation.
+        //Not sure what to do here. I'll just reset calculator.
+        result = "";
+        resetCalculator();
     }
     else
     {
-        let aux = numbers[numbers.length - 1];
-        aux = aux.split("");
-        aux.pop();
-
-        if (aux.length === 0)
-            numbers[numbers.length - 1] = "0";
+        if (numbers.length === operators.length)
+        {
+            //Last input was an operator.
+            operators.pop();
+            displayValue.pop();
+        }
         else
-            numbers[numbers.length - 1] = aux.join("");
+        {
+            //Last input was a number.
+            let aux = numbers[numbers.length - 1];
+            aux = aux.split("");
+            aux.pop();
 
-        displayValue[displayValue.length - 1] = numbers[numbers.length - 1];
+            if (aux.length === 0)
+                numbers[numbers.length - 1] = "0";
+            else
+                numbers[numbers.length - 1] = aux.join("");
+
+            displayValue[displayValue.length - 1] = numbers[numbers.length - 1];
+        }
+        
+        display.textContent = displayValue.join("");
     }
-    
-    display.textContent = displayValue.join("");
 }
 
 function buttonResponse(buttonID)
@@ -376,7 +388,7 @@ function buttonResponse(buttonID)
         numberButtonResponse(buttonID);
     else if (isAnOperator(buttonID))
         operatorButtonResponse(buttonID);
-    else if (isAnAction(buttonID))
+    else if (isAnAction(buttonID))  //Maybe this could be inside isAnAction()
     {
         switch (buttonID)
         {
@@ -389,7 +401,7 @@ function buttonResponse(buttonID)
 
             case "backspaceButton":
             {                
-                // alert("Backspace button pressed!");
+                console.log("backspace");
                 backspaceResponse();
                 break;
             }
