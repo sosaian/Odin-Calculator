@@ -371,7 +371,7 @@ function backspaceResponse()
             aux.pop();
 
             if (aux.length === 0)
-                numbers[numbers.length - 1] = "0";
+                numbers.push("0");
             else
                 numbers[numbers.length - 1] = aux.join("");
 
@@ -401,7 +401,6 @@ function buttonResponse(buttonID)
 
             case "backspaceButton":
             {                
-                console.log("backspace");
                 backspaceResponse();
                 break;
             }
