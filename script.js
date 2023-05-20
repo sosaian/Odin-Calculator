@@ -453,3 +453,11 @@ buttons.forEach( button =>
 {
     button.addEventListener("click", (e) => buttonResponse(e.target.id));
 });
+
+window.addEventListener("keydown", (e) =>
+{
+    const keybind = document.querySelector(`button[data-key="${e.key}"]`);
+    
+    if (keybind)
+        buttonResponse(keybind.id);
+});
