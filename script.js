@@ -460,4 +460,7 @@ window.addEventListener("keydown", (e) =>
     
     if (keybind)
         buttonResponse(keybind.id);
+    else if (e.key === "Enter") 
+        //Make Enter button behave like "equalsButton"
+        buttonResponse("equalsButton");
 });
