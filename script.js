@@ -61,6 +61,8 @@ function numberButtonResponse(buttonID)
 {
     if (!(result === ""))
     {
+        //Number pressed after an operation.
+
         result = "";
         resetCalculator();
         numbers[0] = convertToNumber(buttonID);
@@ -68,6 +70,8 @@ function numberButtonResponse(buttonID)
     }
     else if (operators.length === 0)
     {        
+        //Number pressed when there's only a number in display
+        
         if (numbers[numbers.length - 1] === "0")
             numbers[numbers.length - 1] = convertToNumber(buttonID);
         else
@@ -77,6 +81,8 @@ function numberButtonResponse(buttonID)
     }
     else
     {
+        //Number pressed when there is at least an operator on display
+        
         if (numbers.length === operators.length)
         {
             numbers.push(convertToNumber(buttonID));
@@ -369,13 +375,30 @@ function backspaceResponse()
             let aux = numbers[numbers.length - 1];
             aux = aux.split("");
             aux.pop();
+            
+            if (numbers.length === 1)
+            {
+                if (aux.length === 0)
+                {
+                    aux.push("0");
+                }
 
-            if (aux.length === 0)
-                numbers.push("0");
-            else
                 numbers[numbers.length - 1] = aux.join("");
-
-            displayValue[displayValue.length - 1] = numbers[numbers.length - 1];
+                displayValue[displayValue.length - 1] = numbers[numbers.length - 1];
+            }
+            else
+            {
+                if (aux.length === 0)
+                {
+                    numbers.pop();
+                    displayValue.pop();
+                }
+                else
+                {
+                    numbers[numbers.length - 1] = aux.join("");
+                    displayValue[displayValue.length - 1] = numbers[numbers.length - 1];
+                }
+            }
         }
         
         display.textContent = displayValue.join("");
